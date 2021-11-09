@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees Management System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<main>
+    <div class="container my-2">
+        <center><h2>List of Employees</h2>
+
+        <form th:action="@{/search}" method="get" >
+            <input type="text" id="search" name="search" placeholder="Search by Government ID"
+                   class="form-control mb-4 col-4"/>
+            <button type="submit" id="submit" class="btn btn-dark" style="height:40px;margin-left: 10px">Search</button>
+        </form></center>
+
+        <a  th:href="@{/AddEmployeeForm}" class="btn btn-primary btn-sm mb-3" >Add Employee</a>
+        <a  th:href="@{/AddDepartementForm}" class="btn btn-primary btn-sm mb-3" th:marginwidth="20px" >Add Departement</a>
+
+        <table border="1" class="table table-dark">
+    <thead class="thead-light">
+    <tr>
+     <th class="text-primary"> First Name</th>
+    <th class="text-primary">Last Name</th>
+    <th class="text-primary">Year Of Experience</th>
+    <th class="text-primary">Email</th>
+    <th class="text-primary">Government ID</th>
+    <th class="text-primary">Department</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${listOfEmployees}">
+        <td th:text ="${employee.firstname}"></td>
+        <td th:text ="${employee.lastname}"></td>
+        <td th:text ="${employee.exp}"></td>
+        <td th:text ="${employee.email}"></td>
+        <td th:text ="${employee.governmentID}"></td>
+        <td th:text="${employee.departement.getDeptname()}"></td>
+        <td><a th:href="@{/showEmployeeUpdateForm/{id}(id=${employee.getId()})}"
+               class="btn btn-primary">Update</a>
+        <a th:href="@{deleteEmployee/{id}(id=${employee.getId()})}"
+           class="btn btn-danger" >Delete</a></td>
+
+    </tr>
+    </tbody>
+
+</table>
+</main>
+</body>
+</html>

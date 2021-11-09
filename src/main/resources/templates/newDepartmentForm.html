@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Adding Page</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <h2>New Department Form</h2>
+        <hr>
+        <form action="#" th:action="@{/addDepartemnt}" th:object="${departement}" th:method="POST">
+            <input th:type="text" th:field="*{deptname}"
+                   placeholder="Enter the department name" class="form-control mb-4 col-4">
+            </br>
+            <button type="submit" class="btn btn-success col-2">Add New Departement</button>
+        </form>
+        <hr>
+        <a th:href="@{/}">Go back to Employees List</a>
+    </div>
+</main>
+</body>
+</html>
